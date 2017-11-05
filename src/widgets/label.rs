@@ -65,7 +65,21 @@ impl Click for Label {
     }
 }
 
-impl Place for Label {}
+impl Place for Label {
+
+    fn default_rect(&self) -> Rect {
+
+        let mut rect = self.rect.get();
+        let text = self.text.borrow();
+
+        if rect.height == 0 && rect.width == 0 {
+            rect.height = 16;
+            rect.width = text.len() as u32 * 8;
+        }
+
+        rect
+    }
+}
 
 impl Text for Label {
     fn text<S: Into<String>>(&self, text: S) -> &Self {
@@ -85,7 +99,7 @@ impl Widget for Label {
     }
 
     fn draw(&self, renderer: &mut Renderer, _focused: bool) {
-        let rect = self.rect.get();
+        let rect = self.default_rect();
 
         let b_r = self.border_radius.get();
         renderer.rounded_rect(rect.x, rect.y, rect.width, rect.height, b_r, true, self.bg.get());

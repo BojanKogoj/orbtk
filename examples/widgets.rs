@@ -91,6 +91,14 @@ fn main() {
         });
     window.add(&offset_label);
 
+    y += multi_line_text_box.rect.get().height as i32 + 10;
+
+    let default_label = Label::new();
+    default_label.position(x, y)
+        .text("Default label size");
+    window.add(&default_label);
+
+
     y += offset_label.rect.get().height as i32 + 10;
 
     match Image::from_path("res/icon_small.png") {

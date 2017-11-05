@@ -1,4 +1,5 @@
 use widgets::Widget;
+use rect::Rect;
 
 pub trait Place: Sized + Widget {
     fn position(&self, x: i32, y: i32) -> &Self {
@@ -15,5 +16,9 @@ pub trait Place: Sized + Widget {
         rect.height = height;
         self.rect().set(rect);
         self
+    }
+
+    fn default_rect(&self) -> Rect {
+        self.rect().get()
     }
 }
