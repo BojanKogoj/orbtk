@@ -93,6 +93,13 @@ fn main() {
 
     y += offset_label.rect.get().height as i32 + 10;
 
+    let default_label = Label::new();
+    default_label.position(x, y)
+        .text("Default label size");
+    window.add(&default_label);
+
+    y += 16 + 10;
+
     match Image::from_path("res/icon_small.png") {
         Ok(image) => {
             image.position(x, y);

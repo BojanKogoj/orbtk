@@ -16,4 +16,8 @@ pub trait Place: Sized + Widget {
         self.rect().set(rect);
         self
     }
+
+    fn defaults(&self) -> &Self {
+        self
+    }
 }
